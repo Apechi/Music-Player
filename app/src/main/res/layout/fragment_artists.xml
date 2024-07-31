@@ -30,7 +30,8 @@
             android:layout_height="match_parent"
             android:clipToPadding="false"
             android:layoutAnimation="@anim/layout_animation"
-            app:layoutManager="org.fossify.commons.views.MyLinearLayoutManager" />
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"/>
 
     </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
 </org.fossify.musicplayer.fragments.ArtistsFragment>

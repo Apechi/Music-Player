@@ -23,7 +23,7 @@ room = "2.6.1"
 #Fossify
 commons = "8685963657"
 #Gradle
-gradlePlugins-agp = "8.2.2"
+gradlePlugins-agp = "8.5.0"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
@@ -36,6 +36,7 @@ shortcut-badger = "1.1.22"
 app-version-appId = "org.fossify.musicplayer"
 app-version-versionCode = "1"
 app-version-versionName = "1.0.0"
+biometricKtx = "1.1.0"
 [libraries]
 #AndroidX
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-constraintlayout" }
@@ -58,6 +59,7 @@ jaudiotagger = { module = "net.jthink:jaudiotagger", version.ref = "jaudiotagger
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 autofittextview = { module = "me.grantland:autofittextview", version.ref = "autofittextview" }
 m3u-parser = { module = "com.github.bjoernpetersen:m3u-parser", version.ref = "m3uParser" }
+androidx-biometric-ktx = { group = "androidx.biometric", name = "biometric-ktx", version.ref = "biometricKtx" }
 [bundles]
 room = [
     "androidx-room-ktx",

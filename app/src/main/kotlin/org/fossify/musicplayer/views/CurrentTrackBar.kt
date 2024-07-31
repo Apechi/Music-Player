@@ -24,10 +24,11 @@ class CurrentTrackBar(context: Context, attributeSet: AttributeSet) : RelativeLa
         binding.currentTrackPlayPause.setOnClickListener {
             togglePlayback()
         }
+
     }
 
     fun updateColors() {
-        background = ColorDrawable(context.getProperBackgroundColor())
+
         binding.currentTrackLabel.setTextColor(context.getProperTextColor())
     }
 

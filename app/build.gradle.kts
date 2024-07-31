@@ -109,6 +109,7 @@ dependencies {
     implementation(libs.m3u.parser)
     implementation(libs.autofittextview)
     implementation(libs.jaudiotagger)
+    implementation(libs.androidx.biometric.ktx)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     implementation(libs.bundles.room)

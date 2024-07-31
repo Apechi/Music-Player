@@ -1,23 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="AppTheme" parent="AppTheme.Base" />
-
-    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
-    </style>
-
-    <style name="ShapeAppearance.Player.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
-    </style>
-
-    <style name="ShapeAppearance.Player.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
-    </style>
-
     <style name="AppTheme.Dark" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/color_primary_dark</item>
+        <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
@@ -31,15 +15,11 @@
         <item name="colorControlHighlight">@color/activated_item_foreground</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
         <item name="android:actionModeCloseDrawable">@drawable/ic_arrow_left_vector</item>
+        <item name="android:forceDarkAllowed">true</item>
         <item name="windowActionModeOverlay">true</item>
-
         <item name="android:actionOverflowButtonStyle">@style/ActionMenuOverflowIcon</item>
         <item name="android:radioButtonStyle">@style/MyRadioButtonStyle</item>
         <item name="radioButtonStyle">@style/MyRadioButtonStyle</item>
-    </style>
-
-    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

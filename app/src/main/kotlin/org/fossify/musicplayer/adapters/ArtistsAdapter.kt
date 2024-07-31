@@ -83,6 +83,7 @@ class ArtistsAdapter(activity: BaseSimpleActivity, items: ArrayList<Artist>, rec
         ItemArtistBinding.bind(view).apply {
             root.setupViewBackground(context)
             artistFrame.isSelected = selectedKeys.contains(artist.hashCode())
+            artistFrame.alpha = if (artistFrame.isSelected) 0.5f else 1.0f
             artistTitle.text = if (textToHighlight.isEmpty()) artist.title else artist.title.highlightTextPart(textToHighlight, properPrimaryColor)
             artistTitle.setTextColor(textColor)
 

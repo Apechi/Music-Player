@@ -71,6 +71,8 @@ class ArtistsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
                     adapter.updateItems(artists)
                 }
             }
+
+
         }
     }
 

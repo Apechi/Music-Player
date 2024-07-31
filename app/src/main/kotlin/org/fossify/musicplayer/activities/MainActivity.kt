@@ -8,8 +8,11 @@ import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import me.grantland.widget.AutofitHelper
 import org.fossify.commons.databinding.BottomTablayoutItemBinding
 import org.fossify.commons.dialogs.FilePickerDialog
@@ -124,7 +127,6 @@ class MainActivity : SimpleMusicActivity() {
             findItem(R.id.create_new_playlist).isVisible = isPlaylistFragment
             findItem(R.id.create_playlist_from_folder).isVisible = isPlaylistFragment
             findItem(R.id.import_playlist).isVisible = isPlaylistFragment && isOreoPlus()
-            findItem(R.id.more_apps_from_us).isVisible = !resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)
         }
     }
 
@@ -152,7 +154,6 @@ class MainActivity : SimpleMusicActivity() {
                 R.id.create_playlist_from_folder -> createPlaylistFromFolder()
                 R.id.import_playlist -> tryImportPlaylist()
                 R.id.equalizer -> launchEqualizer()
-                R.id.more_apps_from_us -> launchMoreAppsFromUsIntent()
                 R.id.settings -> launchSettings()
                 R.id.about -> launchAbout()
                 else -> return@setOnMenuItemClickListener false
@@ -232,15 +233,27 @@ class MainActivity : SimpleMusicActivity() {
 
     private fun setupTabs() {
         binding.mainTabsHolder.removeAllTabs()
-        getVisibleTabs().forEach { value ->
-            binding.mainTabsHolder.newTab().setCustomView(org.fossify.commons.R.layout.bottom_tablayout_item).apply {
-                val tabItemBinding = BottomTablayoutItemBinding.bind(customView!!)
-                tabItemBinding.tabItemIcon.setImageDrawable(getTabIcon(value))
-                tabItemBinding.tabItemLabel.text = getTabLabel(value)
-                AutofitHelper.create(tabItemBinding.tabItemLabel)
+        getVisibleTabs().forEachIndexed { index, value ->
+            binding.mainTabsHolder.newTab().apply {
+                setCustomView(R.layout.tablayout_item)
+                val tabView = customView!!
+
+                // Find the TextView within the custom layout
+                val tabItemLabel = tabView.findViewById<TextView>(R.id.tab_item_label)
+                tabItemLabel.text = getTabLabelWithCount(value)
+
+                // Hide the divider for the last tab
+                if (index == getVisibleTabs().size - 1) {
+                    tabView.findViewById<View>(R.id.tab_item_divider).beGone()
+                }
+
                 binding.mainTabsHolder.addTab(this)
             }
         }
+
+        // Ensure tabMode and tabGravity are set correctly in your XML as well
+        binding.mainTabsHolder.tabMode = TabLayout.MODE_FIXED // Equally spaced tabs
+        binding.mainTabsHolder.tabGravity = TabLayout.GRAVITY_FILL // Fill the width
 
         binding.mainTabsHolder.onTabSelectionChanged(
             tabUnselectedAction = {
@@ -255,6 +268,13 @@ class MainActivity : SimpleMusicActivity() {
 
         binding.mainTabsHolder.beGoneIf(binding.mainTabsHolder.tabCount == 1)
     }
+
+    private fun getTabLabelWithCount(position: Int): String {
+        val label = getTabLabel(position)
+
+        return "$label"
+    }
+
 
     private fun setupTabColors() {
         val activeView = binding.mainTabsHolder.getTabAt(binding.viewPager.currentItem)?.customView
@@ -272,18 +292,6 @@ class MainActivity : SimpleMusicActivity() {
 
     private fun getInactiveTabIndexes(activeIndex: Int) = (0 until tabsList.size).filter { it != activeIndex }
 
-    private fun getTabIcon(position: Int): Drawable {
-        val drawableId = when (position) {
-            TAB_PLAYLISTS -> R.drawable.ic_playlist_vector
-            TAB_FOLDERS -> R.drawable.ic_folders_vector
-            TAB_ARTISTS -> org.fossify.commons.R.drawable.ic_person_vector
-            TAB_ALBUMS -> R.drawable.ic_album_vector
-            TAB_GENRES -> R.drawable.ic_genre_vector
-            else -> R.drawable.ic_music_note_vector
-        }
-
-        return resources.getColoredDrawableWithColor(drawableId, getProperTextColor())
-    }
 
     private fun getTabLabel(position: Int): String {
         val stringId = when (position) {
@@ -517,21 +525,12 @@ class MainActivity : SimpleMusicActivity() {
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_EVENT_BUS or LICENSE_GLIDE or LICENSE_M3U_PARSER or LICENSE_AUTOFITTEXTVIEW
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
 
-        val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(org.fossify.commons.R.string.faq_1_title_commons, org.fossify.commons.R.string.faq_1_text_commons),
-            FAQItem(org.fossify.commons.R.string.faq_4_title_commons, org.fossify.commons.R.string.faq_4_text_commons),
-            FAQItem(org.fossify.commons.R.string.faq_9_title_commons, org.fossify.commons.R.string.faq_9_text_commons)
-        )
+    }
 
-        if (!resources.getBoolean(org.fossify.commons.R.bool.hide_google_relations)) {
-            faqItems.add(FAQItem(org.fossify.commons.R.string.faq_2_title_commons, org.fossify.commons.R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(org.fossify.commons.R.string.faq_6_title_commons, org.fossify.commons.R.string.faq_6_text_commons))
-        }
-
-        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+    private fun launchsMoreAppsFromUsIntent() {
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show()
     }
 
     private fun checkWhatsNewDialog() {

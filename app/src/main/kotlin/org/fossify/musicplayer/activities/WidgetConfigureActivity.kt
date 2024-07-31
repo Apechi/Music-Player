@@ -58,20 +58,20 @@ class WidgetConfigureActivity : SimpleActivity() {
             }
         }
 
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
-                    finish()
-                }
-            }
-        }
+//        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
+//            mFeatureLockedDialog = FeatureLockedDialog(this) {
+//                if (!isOrWasThankYouInstalled()) {
+//                    finish()
+//                }
+//            }
+//        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
-            mFeatureLockedDialog?.dismissDialog()
-        }
+//        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
+//            mFeatureLockedDialog?.dismissDialog()
+//        }
     }
 
     private fun initVariables() {
@@ -129,25 +129,25 @@ class WidgetConfigureActivity : SimpleActivity() {
             sendBroadcast(this)
         }
     }
-
-    private fun updateBackgroundColor() = binding.apply {
+    private fun updateBackgroundColor() {
         mBgColor = mBgColorWithoutTransparency.adjustAlpha(mBgAlpha)
-        configPlayer.widgetBackground.applyColorFilter(mBgColor)
-        configBgColor.setFillWithStroke(mBgColor, mBgColor)
-        configSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
+        binding.configPlayer.widgetBackground.applyColorFilter(mBgColor)
+        binding.configBgColor.setFillWithStroke(mBgColor, mBgColor)
+        binding.configSave.backgroundTintList = ColorStateList.valueOf(getProperPrimaryColor())
     }
 
-    private fun updateTextColor() = binding.apply {
-        configTextColor.setFillWithStroke(mTextColor, mTextColor)
+    private fun updateTextColor() {
+        binding.configTextColor.setFillWithStroke(mTextColor, mTextColor)
 
-        configPlayer.songInfoTitle.setTextColor(mTextColor)
-        configPlayer.songInfoArtist.setTextColor(mTextColor)
-        configSave.setTextColor(getProperPrimaryColor().getContrastColor())
+        binding.configPlayer.songInfoTitle.setTextColor(mTextColor)
+        binding.configPlayer.songInfoArtist.setTextColor(mTextColor)
+        binding.configSave.setTextColor(getProperPrimaryColor().getContrastColor())
 
-        configPlayer.widgetControls.previousBtn.drawable.applyColorFilter(mTextColor)
-        configPlayer.widgetControls.playPauseBtn.drawable.applyColorFilter(mTextColor)
-        configPlayer.widgetControls.nextBtn.drawable.applyColorFilter(mTextColor)
+        binding.configPlayer.widgetControls.previousBtn.drawable.applyColorFilter(mTextColor)
+        binding.configPlayer.widgetControls.playPauseBtn.drawable.applyColorFilter(mTextColor)
+        binding.configPlayer.widgetControls.nextBtn.drawable.applyColorFilter(mTextColor)
     }
+
 
     private fun pickBackgroundColor() {
         ColorPickerDialog(this, mBgColorWithoutTransparency) { wasPositivePressed, color ->

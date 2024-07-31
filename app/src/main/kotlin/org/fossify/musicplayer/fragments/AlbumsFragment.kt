@@ -102,6 +102,8 @@ class AlbumsFragment(context: Context, attributeSet: AttributeSet) : MyViewPager
         binding.albumsPlaceholder.setTextColor(textColor)
         binding.albumsFastscroller.updateColors(adjustedPrimaryColor)
         getAdapter()?.updateColors(textColor)
+
+
     }
 
     private fun getAdapter() = binding.albumsList.adapter as? AlbumsAdapter

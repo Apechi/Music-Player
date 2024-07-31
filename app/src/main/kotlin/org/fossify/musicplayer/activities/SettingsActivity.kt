@@ -37,9 +37,9 @@ class SettingsActivity : SimpleControllerActivity() {
     override fun onResume() {
         super.onResume()
         setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
-
-        setupPurchaseThankYou()
-        setupCustomizeColors()
+//
+//        setupPurchaseThankYou()
+//        setupCustomizeColors()
         setupCustomizeWidgetColors()
         setupUseEnglish()
         setupLanguage()
@@ -54,19 +54,19 @@ class SettingsActivity : SimpleControllerActivity() {
         }
     }
 
-    private fun setupPurchaseThankYou() = binding.apply {
-        settingsPurchaseThankYouHolder.beGoneIf(isOrWasThankYouInstalled())
-        settingsPurchaseThankYouHolder.setOnClickListener {
-            launchPurchaseThankYouIntent()
-        }
-    }
-
-    private fun setupCustomizeColors() = binding.apply {
-        settingsColorCustomizationLabel.text = getCustomizeColorsString()
-        settingsColorCustomizationHolder.setOnClickListener {
-            handleCustomizeColorsClick()
-        }
-    }
+//    private fun setupPurchaseThankYou() = binding.apply {
+//        settingsPurchaseThankYouHolder.beGoneIf(isOrWasThankYouInstalled())
+//        settingsPurchaseThankYouHolder.setOnClickListener {
+//            launchPurchaseThankYouIntent()
+//        }
+//    }
+//
+//    private fun setupCustomizeColors() = binding.apply {
+//        settingsColorCustomizationLabel.text = getCustomizeColorsString()
+//        settingsColorCustomizationHolder.setOnClickListener {
+//            handleCustomizeColorsClick()
+//        }
+//    }
 
     private fun setupCustomizeWidgetColors() {
         binding.settingsWidgetColorCustomizationHolder.setOnClickListener {
@@ -91,7 +91,7 @@ class SettingsActivity : SimpleControllerActivity() {
         settingsLanguage.text = Locale.getDefault().displayLanguage
         settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
         settingsLanguageHolder.setOnClickListener {
-            launchChangeAppLanguageIntent()
+//            `launchChangeAppLanguageIntent()`
         }
     }
 
